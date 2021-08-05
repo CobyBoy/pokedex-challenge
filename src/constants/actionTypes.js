@@ -1,0 +1,8 @@
+export const FETCH_ALL = 'FETCH_ALL';
+export const FETCH_BY_NAME = 'FETCH_BY_NAME';
+export const FETCH_BY_URL = 'FETCH_BY_URL';
+export const FETCH_BY_ID = 'FETCH_BY_ID';
+export const CLEAR_POKEMON_FROM_API = 'CLEAR_POKEMON_FROM_API';
+export const CREATE_GET_BY_NAME_ERROR = 'CREATE_GET_BY_NAME_ERROR';
+export const CREATE_GET_BY_ID_ERROR = 'CREATE_GET_BY_ID_ERROR';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
