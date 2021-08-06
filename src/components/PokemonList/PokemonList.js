@@ -13,7 +13,7 @@ const PokemonList = (props) => {
     }, []);
 
     return (
-        <>Pokemon List
+        <>
             <Container>
                 <Grid container alignItems='stretch' justifyContent='center'>
                     { error ? <PokemonNotFound /> : !filteredPokemons?.length && loading ? <CircularProgress /> :
