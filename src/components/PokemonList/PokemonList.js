@@ -7,7 +7,6 @@ import { LIMIT, OFFSET } from '../../constants/constants';
 
 const PokemonList = (props) => {
     const { filteredPokemons, pokemons, loading, getAll, dispatch, error, setFilteredPokemons } = useContext(PokemonContext);
-
     useEffect(() => {
         getAll(dispatch, LIMIT, OFFSET);
     }, []);

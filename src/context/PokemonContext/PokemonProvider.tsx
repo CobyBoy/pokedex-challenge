@@ -1,35 +1,35 @@
-import { useReducer, useState, useEffect } from 'react';
+import { useReducer, useState, useEffect, Props, PropsWithChildren, } from 'react';
+import React from 'react';
 import PokemonContext from './PokemonContext';
 import PokemonReducer from './PokemonReducer';
 import { getAll, getPokemonCard } from '../../services/index';
-import { LIMIT, OFFSET } from '../../constants/constants';
+import { PokemonInit, StateInit } from '../../interfaces/types';
 
-const PokemonProvider = ({ children }) => {
+const PokemonProvider = ({ children }: any) => {
 
-
-    const initialState = {
+    const initialState: StateInit = {
         pokemons: [],
         selectedPokemon: {},
-        error: null,
+        error: false,
         loading: true
     };
     const [state, dispatch] = useReducer(PokemonReducer, initialState);
     const [currentId, setCurrentId] = useState(null);
-    const [searchingPokemon, setSearchingPokemon] = useState('');
+    const [searchingPokemon, setSearchingPokemon] = useState<string>('');
     const [filteredPokemons, setFilteredPokemons] = useState(initialState.pokemons);
 
     useEffect(() => {
         setFilteredPokemons(state.pokemons);
     }, [state.loading, state.pokemons]);
 
-    const filterPokemons = (nameToFilter) => {
-        const results = state?.pokemons?.filter((pokemon) => (
+    const filterPokemons = (nameToFilter: string) => {
+        const results = state?.pokemons?.filter((pokemon: PokemonInit) => (
             pokemon?.name?.includes(nameToFilter)
         ));
         setFilteredPokemons(results);
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === '') {
             setFilteredPokemons(state.pokemons);
         }
@@ -38,7 +38,7 @@ const PokemonProvider = ({ children }) => {
     };
 
     return (
-        <PokemonContext.Provider value={ {
+        <PokemonContext.Provider value={{
             pokemons: state.pokemons,
             selectedPokemon: state.selectedPokemon,
             error: state.error,
@@ -47,8 +47,8 @@ const PokemonProvider = ({ children }) => {
             searchingPokemon,
             filteredPokemons,
             getAll, dispatch, setCurrentId, handleChange, setSearchingPokemon, setFilteredPokemons
-        } }>
-            { children }
+        }}>
+            {children}
         </PokemonContext.Provider>
     );
 };

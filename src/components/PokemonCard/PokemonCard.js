@@ -1,13 +1,14 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import PokemonContext from '../../context/PokemonContext/PokemonContext';
 import { Card, CardMedia, CardActionArea, CardContent, CircularProgress, Typography, } from '@material-ui/core';
 import { clearSelectedPokemon } from '../../services';
 import { formatIdUtils } from '../../utils/PokemonIdFormatter.utils';
 import { capitalizeFirstLetterUtils } from '../../utils/PokemonNameFormatter.utils';
+import useStyles from './styles';
 
 const PokemonCard = ({ pokemon: { name, sprites, id }, props }) => {
     const { history } = props;
-    const { setCurrentId, dispatch, pokemons } = useContext(PokemonContext);
+    const classes = useStyles();
     const [imageLoading, setImageLoading] = useState(true);
 
     const handleClick = (id) => {
@@ -19,20 +20,20 @@ const PokemonCard = ({ pokemon: { name, sprites, id }, props }) => {
 
     return (
         <>
-            <Card onClick={ () => { handleClick(id); } } style={ { width: 250, margin: 15 } }>
+            <Card onClick={ () => { handleClick(id); } } className={ classes.card }>
                 <CardActionArea>
                     {
                         imageLoading && <CircularProgress />
                     }
                     <CardMedia
                         component='img'
-                        style={ { height: 100, width: 100, padding: '2%', margin: 'auto' } }
+                        className={ classes.cardMedia }
                         image={ sprites?.front_default }
                         title={ name }
                         onLoad={ load }
                     />
 
-                    <CardContent style={ { textAlign: 'center' } }>
+                    <CardContent className={ classes.cardContent }>
                         <Typography gutterBottom variant='h5' component='h2'>
                             { capitalizeFirstLetterUtils(name) }
                         </Typography>
