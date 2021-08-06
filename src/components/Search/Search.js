@@ -9,9 +9,9 @@ import { getPokemonCard } from '../../services';
 
 const Search = (props) => {
     const { searchingPokemon, handleChange, dispatch } = useContext(PokemonContext);
+    const { history } = props;
 
     const onSearch = () => {
-        console.log('searhinc');
         if (searchingPokemon === '') {
             getAll(dispatch, LIMIT, OFFSET);
         }
@@ -19,13 +19,12 @@ const Search = (props) => {
     };
 
     const searchPokemon = async (pokemonName) => {
-        pokemonName ? await getPokemonCard(dispatch, pokemonName) : getAll(dispatch, LIMIT, OFFSET);
+        history.push(`${pokemonName}`);
     };
 
 
     return (
         < >
-            { console.log('searchingPokemon de searchingPokemon', searchingPokemon) }
             <AppBar position='static' style={ { padding: 20, alignItems: 'center', } }>
                 <Paper style={ { padding: 20, display: 'flex', alignItems: 'center', width:'40%', height:'1em'} }>
                     <InputBase style={ { background: 'white', width: '100%', fontSize:'1em' } } placeholder='Search Pokemon' inputProps={ { 'aria-label': 'Search Pokemon' } }

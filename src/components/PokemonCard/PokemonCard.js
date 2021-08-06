@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import PokemonContext from '../../context/PokemonContext/PokemonContext';
 import { Card, CardMedia, CardActionArea, CardContent, CircularProgress, Typography, } from '@material-ui/core';
-import { clearAllPokemons } from '../../services';
+import { clearSelectedPokemon } from '../../services';
 import { formatIdUtils } from '../../utils/PokemonIdFormatter.utils';
 import { capitalizeFirstLetterUtils } from '../../utils/PokemonNameFormatter.utils';
 
@@ -11,12 +11,7 @@ const PokemonCard = ({ pokemon: { name, sprites, id }, props }) => {
     const [imageLoading, setImageLoading] = useState(true);
 
     const handleClick = (id) => {
-        console.log('habdle id', id);
-        clearAllPokemons(dispatch);
         history.push(`/${id}`);
-        
-        console.log('hadle click card selected pokemon');
-        console.log('check state afeter click card', pokemons );
     };
     const load = () => {
         setImageLoading(false);

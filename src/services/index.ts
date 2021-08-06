@@ -46,12 +46,10 @@ export const getPokemonById = async (dispatch: React.Dispatch<{}>, id: number) =
 };
 
 export const clearAllPokemons = (dispatch: React.Dispatch<{}>) => {
-    console.log('clear all pokemons');
     dispatch({ type: CLEAR_POKEMON_FROM_API, payload: [] });
 };
 
 export const clearAllErrors = (dispatch: React.Dispatch<{}>) => {
-    console.log('clearing errors');
     dispatch({ type: CLEAR_ERRORS });
 };
 
