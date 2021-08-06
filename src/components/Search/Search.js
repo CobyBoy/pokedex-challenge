@@ -1,4 +1,4 @@
-import { AppBar, InputBase, Paper} from '@material-ui/core';
+import { AppBar, InputBase, Paper, FormControl} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import { useContext } from 'react';
@@ -14,11 +14,14 @@ const Search = (props) => {
     const { history } = props;
     const classes = useStyles();
 
-    const onSearch = () => {
-        if (searchingPokemon === '') {
-            getAll(dispatch, LIMIT, OFFSET);
+    const onSearch = (e) => {
+        console.log(e);
+        if (e.key === 'Enter' || e.type ==='click') {
+            if (searchingPokemon === '') {
+                getAll(dispatch, LIMIT, OFFSET);
+            }
+            searchPokemon(formatToLowerCase(searchingPokemon));
         }
-        searchPokemon(formatToLowerCase(searchingPokemon));
     };
 
     const searchPokemon = async (pokemonName) => {
@@ -29,10 +32,11 @@ const Search = (props) => {
     return (
         < >
             <AppBar position='static' className={classes.appBar} >
-                <Paper className={classes.paper} >
-                    <InputBase className={classes.input} placeholder='Search Pokemon' inputProps={ { 'aria-label': 'Search Pokemon' } }
-                        value={ searchingPokemon } onChange={ handleChange } autoFocus={ true }/>
-                    <IconButton onClick={()=>{onSearch();}}>
+                <Paper className={ classes.paper } >
+                    
+                    <InputBase className={ classes.input } placeholder='Search Pokemon' inputProps={ { 'aria-label': 'Search Pokemon' } }
+                        value={ searchingPokemon } onChange={ handleChange } autoFocus={ true } onKeyPress={ (e) => { onSearch(e); }}/>
+                    <IconButton onClick={(e)=>{onSearch(e);}}>
                         <SearchIcon style={ { color: 'black' } } />
                     </IconButton>
                 </Paper>
