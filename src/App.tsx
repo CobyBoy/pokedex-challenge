@@ -1,18 +1,13 @@
-import { Route, Router, useHistory } from 'react-router-dom';
-import PokemonGrid from './components/PokemonList/PokemonList';
+import { useHistory } from 'react-router-dom';
 import Search from './components/Search/Search';
-import PokemonProfile from './components/PokemonPage/PokemonProfile/PokemonProfile';
+import Routes from './routes/routes';
 
 const App = () => {
   let history = useHistory();
   return (
     <>
-      <Router history={history}>
-        <Route path='/' component={Search} />
-        <Route exact path='/' component={PokemonGrid} />
-        <Route exact path='/:id' component={PokemonProfile} />
-      </Router>
-
+      <Search history = {history}></Search>
+        <Routes/>
     </>
   );
 };
