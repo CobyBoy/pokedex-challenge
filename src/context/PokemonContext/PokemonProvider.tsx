@@ -1,8 +1,7 @@
-import { useReducer, useState, useEffect, Props, PropsWithChildren, } from 'react';
 import React from 'react';
+import { useReducer, useState, useEffect } from 'react';
 import PokemonContext from './PokemonContext';
 import PokemonReducer from './PokemonReducer';
-import { getAll, getPokemonCard } from '../../services/index';
 import { PokemonInit, StateInit } from '../../interfaces/types';
 
 const PokemonProvider = ({ children }: any) => {
@@ -20,7 +19,7 @@ const PokemonProvider = ({ children }: any) => {
 
     useEffect(() => {
         setFilteredPokemons(state.pokemons);
-    }, [state.loading, state.pokemons]);
+    }, [state.pokemons]);
 
     const filterPokemons = (nameToFilter: string) => {
         const results = state?.pokemons?.filter((pokemon: PokemonInit) => (
@@ -28,15 +27,6 @@ const PokemonProvider = ({ children }: any) => {
         ));
         setFilteredPokemons(results);
     };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value === '') {
-            setFilteredPokemons(state.pokemons);
-        }
-        setSearchingPokemon(e.target.value);
-        filterPokemons(e.target.value);
-    };
-
     return (
         <PokemonContext.Provider value={{
             pokemons: state.pokemons,
@@ -46,7 +36,7 @@ const PokemonProvider = ({ children }: any) => {
             currentId,
             searchingPokemon,
             filteredPokemons,
-            getAll, dispatch, setCurrentId, handleChange, setSearchingPokemon, setFilteredPokemons
+            dispatch, setCurrentId, setSearchingPokemon, filterPokemons, setFilteredPokemons
         }}>
             {children}
         </PokemonContext.Provider>

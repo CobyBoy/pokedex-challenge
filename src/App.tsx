@@ -1,4 +1,3 @@
-import './App.css';
 import { Route, Router, useHistory } from 'react-router-dom';
 import PokemonGrid from './components/PokemonList/PokemonList';
 import Search from './components/Search/Search';

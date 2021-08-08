@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
         width: 250,
         margin: 15
     },
-    cardMedia: {
+    media: {
         height: 100,
         width: 100,
         padding: '2%',

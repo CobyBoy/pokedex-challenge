@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import PokemonContext from '../../context/PokemonContext/PokemonContext';
 import { Card, CardMedia, CardActionArea, CardContent, CircularProgress, Typography, } from '@material-ui/core';
-import { clearSelectedPokemon } from '../../services';
 import { formatIdUtils } from '../../utils/PokemonIdFormatter.utils';
 import { capitalizeFirstLetterUtils } from '../../utils/PokemonNameFormatter.utils';
 import useStyles from './styles';
@@ -9,13 +8,10 @@ import useStyles from './styles';
 const PokemonCard = ({ pokemon: { name, sprites, id }, props }) => {
     const { history } = props;
     const classes = useStyles();
-    const [imageLoading, setImageLoading] = useState(true);
+    const { loading } = useContext(PokemonContext);
 
     const handleClick = (id) => {
         history.push(`/${id}`);
-    };
-    const load = () => {
-        setImageLoading(false);
     };
 
     return (
@@ -23,14 +19,13 @@ const PokemonCard = ({ pokemon: { name, sprites, id }, props }) => {
             <Card onClick={ () => { handleClick(id); } } className={ classes.card }>
                 <CardActionArea>
                     {
-                        imageLoading && <CircularProgress />
+                        loading && <CircularProgress />
                     }
                     <CardMedia
                         component='img'
-                        className={ classes.cardMedia }
+                        className={ classes.media }
                         image={ sprites?.front_default }
                         title={ name }
-                        onLoad={ load }
                     />
 
                     <CardContent className={ classes.cardContent }>

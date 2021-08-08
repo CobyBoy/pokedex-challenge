@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles((theme) => ({
-    cardMedia: {
+    media: {
         height: 100,
         width: 100,
         padding: '2%',
