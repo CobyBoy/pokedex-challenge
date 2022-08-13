@@ -1,4 +1,4 @@
-export const TYPE_COLORS = {
+export const TYPE_COLORS: { [key: string]: string} = {
   bug: '#B1C12E',
   dark: '#4F3A2D',
   dragon: '#755EDF',
@@ -17,4 +17,4 @@ export const TYPE_COLORS = {
   rock: '#B9A156',
   steel: '#B5B5C3',
   water: '#3295F6'
-};
+} ;
